@@ -1,6 +1,5 @@
 package com.lesson10;
 
-import java.util.Arrays;
 
 public class Main {
 
