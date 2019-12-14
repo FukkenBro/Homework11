@@ -4,8 +4,6 @@ package com.lesson10;
 //        2*)Дан кирпич со сторонами a,b,c и отверстие со сторонами x,y.Определить пройдет ли кирпич в отверстие.
 //        Например кирпич со сторонами 2,3,2не пройдет в отверстие 1x50.
 
-import com.sun.org.apache.bcel.internal.generic.ARETURN;
-import sun.corba.Bridge;
 
 import java.util.Arrays;
 import java.util.Random;
