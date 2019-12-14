@@ -8,7 +8,7 @@ package com.lesson10;
 import java.util.Arrays;
 import java.util.Random;
 
-public class task2 {
+public class Task2 {
     public static void main(String[] args) {
         driver();
     }
