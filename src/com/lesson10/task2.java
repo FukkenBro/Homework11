@@ -7,7 +7,6 @@ package com.lesson10;
 
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
 
 public class task2 {
     public static void main(String[] args) {
@@ -17,59 +16,58 @@ public class task2 {
     private static final Random RANDOM = new Random();
 
     private static void driver() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Нажмите Enter чтобы продолжить ...");
         try {
             System.in.read();
 
             int[] brick = brickGenerator();
             System.out.println("Кирпич - " + Arrays.toString(brick));
-            int[] otverstie = otverstieGenerator();
-            System.out.println("Отверстие - " + Arrays.toString(otverstie));
-            checkIfFits(brick, otverstie);
+            int[] hole = holeGenerator();
+            System.out.println("Отверстие - " + Arrays.toString(hole));
+            checkIfFits(brick, hole);
             System.out.println();
             driver();
         } catch (Exception e) {
-
+            System.out.println("Ошибка");
         }
     }
 
     private static int[] brickGenerator() {
         int[] brick = new int[3];
         for (int i = 0; i < 3; i++) {
-            brick[i] = RANDOM.nextInt(100)+1;
+            brick[i] = RANDOM.nextInt(100) + 1;
         }
         return brick;
     }
 
-    private static int[] otverstieGenerator() {
-        int[] otverstie = new int[2];
+    private static int[] holeGenerator() {
+        int[] hole = new int[2];
         for (int i = 0; i < 2; i++) {
-            otverstie[i] = RANDOM.nextInt(100)+1;
+            hole[i] = RANDOM.nextInt(100) + 1;
         }
-        return otverstie;
+        return hole;
     }
 
 
-    private static void checkIfFits(int[] brick, int[] otverstie) {
+    private static void checkIfFits(int[] brick, int[] hole) {
 
         Arrays.sort(brick);
-        Arrays.sort(otverstie);
-        int костыль = 0;
+        Arrays.sort(hole);
+        int eventCounter = 0;
 
-        if (brick[0] <= otverstie[0] && (brick[1] <= otverstie[1] || otverstie[0] * (brick[1] * brick[1] + brick[0] * brick[0]) >= (2 * brick[1] * brick[0] * otverstie[1] + (brick[1] * brick[1] - brick[0] * brick[0]) * Math.sqrt(brick[1] * brick[1] + brick[0] * brick[0] - otverstie[1] * otverstie[1])))) {
+        if (brick[0] <= hole[0] && (brick[1] <= hole[1] || hole[0] * (brick[1] * brick[1] + brick[0] * brick[0]) >= (2 * brick[1] * brick[0] * hole[1] + (brick[1] * brick[1] - brick[0] * brick[0]) * Math.sqrt(brick[1] * brick[1] + brick[0] * brick[0] - hole[1] * hole[1])))) {
             System.out.println("Проходит стороной " + brick[0] + ":" + brick[1]);
-            костыль++;
+            eventCounter++;
         }
-        if (brick[0] <= otverstie[0] && (brick[2] <= otverstie[1] || otverstie[0] * (brick[2] * brick[2] + brick[0] * brick[0]) >= (2 * brick[2] * brick[0] * otverstie[1] + (brick[2] * brick[2] - brick[0] * brick[0]) * Math.sqrt(brick[2] * brick[2] + brick[0] * brick[0] - otverstie[1] * otverstie[1])))) {
+        if (brick[0] <= hole[0] && (brick[2] <= hole[1] || hole[0] * (brick[2] * brick[2] + brick[0] * brick[0]) >= (2 * brick[2] * brick[0] * hole[1] + (brick[2] * brick[2] - brick[0] * brick[0]) * Math.sqrt(brick[2] * brick[2] + brick[0] * brick[0] - hole[1] * hole[1])))) {
             System.out.println("Проходит стороной " + brick[0] + ":" + brick[2]);
-            костыль++;
+            eventCounter++;
         }
-        if (brick[1] <= otverstie[0] && (brick[2] <= otverstie[1] || otverstie[0] * (brick[2] * brick[2] + brick[1] * brick[1]) >= (2 * brick[2] * brick[1] * otverstie[1] + (brick[2] * brick[2] - brick[1] * brick[1]) * Math.sqrt(brick[2] * brick[2] + brick[1] * brick[1] - otverstie[1] * otverstie[1])))) {
+        if (brick[1] <= hole[0] && (brick[2] <= hole[1] || hole[0] * (brick[2] * brick[2] + brick[1] * brick[1]) >= (2 * brick[2] * brick[1] * hole[1] + (brick[2] * brick[2] - brick[1] * brick[1]) * Math.sqrt(brick[2] * brick[2] + brick[1] * brick[1] - hole[1] * hole[1])))) {
             System.out.println("Проходит стороной " + brick[1] + ":" + brick[2]);
-            костыль++;
+            eventCounter++;
         }
-        if (костыль == 0) {
+        if (eventCounter == 0) {
             System.out.println("Не проходит");
         }
     }
