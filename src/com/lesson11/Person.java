@@ -8,9 +8,6 @@ public class Person {
     private double height;
     private double weight;
 
-    public Person() {
-    }
-
     public Person(String gender, String name, int age, double height, double weight) {
         this.gender = gender;
         this.name = name;
